@@ -22,7 +22,6 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 - Create the config folder
 - Create firebaseAdmin.json and firebaseClient.json files in this folder and add the configuration values
-- Add FIREBASE_DATABASE_URL value to .env file
 
 ## Learn More
 
