@@ -32,7 +32,7 @@ export async function getServerSideProps({ req, res }) {
 
   const user = await firebaseAdmin.auth().verifySessionCookie(req.cookies.session);
 
-  if (!user) {
+  if (user) {
     return {
       redirect: {
         destination: "/dashboard",
