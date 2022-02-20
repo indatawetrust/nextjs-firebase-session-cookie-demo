@@ -1,4 +1,4 @@
-import firebaseAdmin from "lib/firebaseadmin";
+import firebaseAdmin from "lib/firebaseAdmin";
 
 async function handler(req, res) {
   const { method } = req;
