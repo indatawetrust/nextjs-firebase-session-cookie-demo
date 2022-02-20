@@ -1,10 +1,12 @@
+import Link from 'next/link'
+
 export default function Page({ user }) {
   return (
     <div>
       <div>user is logged in: <strong>{user.name}</strong></div>
       <hr />
       <div>
-        <a href="/api/logout">logout</a>
+        <Link href="/api/logout">logout</Link>
       </div>
     </div>
   )
