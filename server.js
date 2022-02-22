@@ -1,13 +1,30 @@
+require('dotenv-flow').config()
+
 const express = require('express')
 const next = require('next')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+const proxyConfig = {
+  target: process.env.API_GATEWAY, 
+  changeOrigin: true,
+  logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+}
+
 app.prepare().then(() => {
   const server = express()
+
+  server.use('/api', (req, res, next) => {
+    if (['/login', '/logout'].includes(req.path)) {
+      return next()
+    }
+
+    return createProxyMiddleware('/api', proxyConfig)(req, res, next)
+  })
 
   server.all('*', (req, res) => {
     return handle(req, res)
