@@ -12,6 +12,7 @@ const handle = app.getRequestHandler()
 const proxyConfig = {
   target: process.env.API_GATEWAY, 
   changeOrigin: true,
+  pathRewrite: { '^/api': '' },
   logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
 }
 
